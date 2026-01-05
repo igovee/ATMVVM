@@ -14,6 +14,7 @@ typedef void (^ATMVVM_Collection_ItemVM_DidSelectItemBlock)(UICollectionView * _
 
 //这几个属性不能自己赋值使用
 @property (nonatomic, copy, readonly) ATMVVM_Collection_ItemVM_ReloadSectionBlock _Nonnull reloadSectionBlock;
+@property (nonatomic, copy, readonly) ATMVVM_Collection_ItemVM_ReloadViewBlock _Nonnull reloadRowBlock;
 @property (nonatomic, copy, readonly) ATMVVM_Collection_ItemVM_ReloadViewBlock _Nonnull reloadViewBlock;
 @property (nonatomic, copy, readonly) ATMVVM_Collection_ItemVM_RefreshViewBlock _Nonnull refreshViewBlock;
 

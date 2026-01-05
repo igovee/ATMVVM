@@ -4,6 +4,7 @@
 @interface ATMVVM_Collection_ItemVM()
 
 @property (nonatomic, copy) ATMVVM_Collection_ItemVM_ReloadSectionBlock _Nonnull reloadSectionBlock;
+@property (nonatomic, copy) ATMVVM_Collection_ItemVM_ReloadViewBlock _Nonnull reloadRowBlock;
 @property (nonatomic, copy) ATMVVM_Collection_ItemVM_ReloadViewBlock _Nonnull reloadViewBlock;
 @property (nonatomic, copy) ATMVVM_Collection_ItemVM_RefreshViewBlock _Nonnull refreshViewBlock;
 
@@ -46,6 +47,20 @@
                     [cell refreshSubviews:YES];
                     [cell layoutIfNeeded];
                 }
+            }
+        });
+    };
+    self.reloadRowBlock = ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UICollectionView * collectionView = weakSelf.collectionView;
+            NSIndexPath * indexPath = weakSelf.indexPath;
+            
+            if(collectionView && indexPath) {
+                ATMVVM_Collection_Cell * cell = (ATMVVM_Collection_Cell *)[collectionView cellForItemAtIndexPath:indexPath];
+                [cell refreshSubviews:YES];
+                [UIView performWithoutAnimation:^{
+                    [collectionView reloadItemsAtIndexPaths:@[indexPath]];
+                }];
             }
         });
     };
