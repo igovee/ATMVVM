@@ -59,11 +59,13 @@
             
             if(collectionView && indexPath) {
                 ATMVVM_Collection_Cell * cell = (ATMVVM_Collection_Cell *)[collectionView cellForItemAtIndexPath:indexPath];
-                if([cell isKindOfClass:ATMVVM_Collection_Cell.class]){
-                    [cell refreshSubviews:YES];
-                    [UIView performWithoutAnimation:^{
-                        [collectionView reloadItemsAtIndexPaths:@[indexPath]];
-                    }];
+                if(cell){
+                    if([cell isKindOfClass:ATMVVM_Collection_Cell.class]){
+                        [cell refreshSubviews:YES];
+                        [UIView performWithoutAnimation:^{
+                            [collectionView reloadItemsAtIndexPaths:@[indexPath]];
+                        }];
+                    }
                 }
             }
         });
