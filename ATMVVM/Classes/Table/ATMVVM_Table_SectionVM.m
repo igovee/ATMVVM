@@ -37,8 +37,10 @@
             if(tableView && indexPath) {
                 ATMVVM_Table_HeaderFooterView * header = (ATMVVM_Table_HeaderFooterView *)[tableView headerViewForSection:indexPath.section];
                 if(header){
-                    [header refreshSubviews:YES];
-                    [header layoutIfNeeded];
+                    if([header isKindOfClass:ATMVVM_Table_HeaderFooterView.class]){
+                        [header refreshSubviews:YES];
+                        [header layoutIfNeeded];
+                    }
                 }
             }
         });
@@ -51,8 +53,10 @@
             if(tableView && indexPath) {
                 ATMVVM_Table_HeaderFooterView * footer = (ATMVVM_Table_HeaderFooterView *)[tableView footerViewForSection:indexPath.section];
                 if(footer){
-                    [footer refreshSubviews:YES];
-                    [footer layoutIfNeeded];
+                    if([footer isKindOfClass:ATMVVM_Table_HeaderFooterView.class]){
+                        [footer refreshSubviews:YES];
+                        [footer layoutIfNeeded];
+                    }
                 }
             }
         });

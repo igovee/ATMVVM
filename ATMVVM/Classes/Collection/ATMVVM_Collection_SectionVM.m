@@ -44,8 +44,10 @@
             if(collectionView && indexPath) {
                 ATMVVM_Collection_ReusableView * header = (ATMVVM_Collection_ReusableView *)[collectionView supplementaryViewForElementKind:UICollectionElementKindSectionHeader atIndexPath:indexPath];
                 if(header){
-                    [header refreshSubviews:YES];
-                    [header layoutIfNeeded];
+                    if([header isKindOfClass:ATMVVM_Collection_ReusableView.class]){
+                        [header refreshSubviews:YES];
+                        [header layoutIfNeeded];
+                    }
                 }
             }
         });
@@ -58,8 +60,10 @@
             if(collectionView && indexPath) {
                 ATMVVM_Collection_ReusableView * footer = (ATMVVM_Collection_ReusableView *)[collectionView supplementaryViewForElementKind:UICollectionElementKindSectionFooter atIndexPath:indexPath];
                 if(footer){
-                    [footer refreshSubviews:YES];
-                    [footer layoutIfNeeded];
+                    if([footer isKindOfClass:ATMVVM_Collection_ReusableView.class]){
+                        [footer refreshSubviews:YES];
+                        [footer layoutIfNeeded];
+                    }
                 }
             }
         });

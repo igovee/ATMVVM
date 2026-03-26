@@ -44,8 +44,10 @@
             if(collectionView && indexPath) {
                 ATMVVM_Collection_Cell * cell = (ATMVVM_Collection_Cell *)[collectionView cellForItemAtIndexPath:indexPath];
                 if(cell){
-                    [cell refreshSubviews:YES];
-                    [cell layoutIfNeeded];
+                    if([cell isKindOfClass:ATMVVM_Collection_Cell.class]){
+                        [cell refreshSubviews:YES];
+                        [cell layoutIfNeeded];
+                    }
                 }
             }
         });
@@ -57,10 +59,12 @@
             
             if(collectionView && indexPath) {
                 ATMVVM_Collection_Cell * cell = (ATMVVM_Collection_Cell *)[collectionView cellForItemAtIndexPath:indexPath];
-                [cell refreshSubviews:YES];
-                [UIView performWithoutAnimation:^{
-                    [collectionView reloadItemsAtIndexPaths:@[indexPath]];
-                }];
+                if([cell isKindOfClass:ATMVVM_Collection_Cell.class]){
+                    [cell refreshSubviews:YES];
+                    [UIView performWithoutAnimation:^{
+                        [collectionView reloadItemsAtIndexPaths:@[indexPath]];
+                    }];
+                }
             }
         });
     };

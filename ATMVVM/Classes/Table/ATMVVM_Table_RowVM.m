@@ -35,8 +35,10 @@
             if(tableView && indexPath) {
                 ATMVVM_Table_Cell * cell = (ATMVVM_Table_Cell *)[tableView cellForRowAtIndexPath:indexPath];
                 if(cell){
-                    [cell refreshSubviews:YES];
-                    [cell layoutIfNeeded];
+                    if([cell isKindOfClass:ATMVVM_Table_Cell.class]){
+                        [cell refreshSubviews:YES];
+                        [cell layoutIfNeeded];
+                    }
                 }
             }
         });
